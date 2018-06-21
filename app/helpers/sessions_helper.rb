@@ -1,5 +1,13 @@
 module SessionsHelper
 
+    def slack_state
+        session[:slack_state] ||= SecureRandom.urlsafe_base64
+    end
+
+    def reset_slack_state
+        session.delete(:slack_state)
+    end
+
     def current_user
         @current_user ||= User.find_by(id: session[:user_id])
     end

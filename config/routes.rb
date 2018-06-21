@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   post '/login',  to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 	get 'slack_oauth', to: 'sessions#slack_oauth'
+  get 'slack/oauth/callback', to: 'sessions#slack_oauth_callback'
 
   get 'welcome/home'
 
