@@ -1,5 +1,8 @@
 
 <div class="signup_area">
-    <p>Slackに画像をアップロードしよう！</p>
+    <h1>Slackに画像をアップロードしよう！</h1>
+
+    <% if !logged_in? %>
     <%= link_to 'サインアップ', signup_path, class: 'signup_link' %>
+    <% end %>
 </div>

@@ -9,12 +9,11 @@ module SessionsHelper
     end
 
     def logged_in?
-        !@current_user.nil?
+        !current_user.nil?
     end
 
-    def logout(user)
-        user.destroy if logged_in
+    def logout
+        current_user.destroy if logged_in?
         reset_session
-        redirect_to :root_url
     end
 end
