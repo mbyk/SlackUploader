@@ -4,5 +4,7 @@
 
     <% if !logged_in? %>
     <%= link_to 'サインアップ', signup_path, class: 'signup_link' %>
+    <% else %>
+    <%= link_to 'Slack連携', slack_oauth_path, class: 'signup_link' %>
     <% end %>
 </div>
