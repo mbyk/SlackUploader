@@ -19,7 +19,7 @@
             <% if !logged_in? %>
             <li><%= link_to 'Login', login_path %></li>
             <% else %>
-            <li><%= link_to 'Logout', logout_path, method: :delete %></li>
+            <li><%= link_to 'Logout', logout_path, method: :delete, data: { confirm: 'ログアウトしてもよいですか？' } %></li>
             <% end %>
           </ul>
         </div>

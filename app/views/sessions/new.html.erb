@@ -1,2 +1,29 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<div>
+    <%= form_for(:session, url: login_path, html: { id: 'signup_form' }) do |f| %>
+    <div class="form_container">
+        <div class="form-row">
+            <div class="form-column-label">
+                <div class="inner">
+                    <%= f.label 'メールアドレス' %>
+                </div>
+            </div>
+            <div class="form-column-value">
+                <%= f.text_field :email %>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-column-label">
+                <div class="inner">
+                    <%= f.label 'パスワード' %>
+                </div>
+            </div>
+            <div class="form-column-value">
+                <%= f.password_field :password %>
+            </div>
+        </div>
+    </div>
+    <div class="form_footer">
+        <%= f.submit '登録', id: 'signup_button' %>
+    </div>
+    <% end %>
+</div>

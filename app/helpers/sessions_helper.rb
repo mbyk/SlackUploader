@@ -13,7 +13,6 @@ module SessionsHelper
     end
 
     def logout
-        current_user.destroy if logged_in?
         reset_session
     end
 end
