@@ -1,0 +1,164 @@
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+#header {
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+
+    .title {
+        color: white;
+        font-size: 1.3em;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+@mixin action_button {
+    width: 100px;
+    height: 50px;
+    color: white;
+    font-size: 1.3em;
+    background-color: #e01563;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: 0;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+
+.alert-success {
+    background-color: #3eb991;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert-error {
+    background-color: #e01563;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.validation-error {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #e01563;
+    color:#e01563;
+
+    li {
+        list-style: none;
+    }
+}
+
+.signup_area {
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+
+    a {
+        padding: 10px;
+
+        &.signup_link {
+            @include action_button;
+        }
+    }
+
+
+
+}
+
+
+#footer {
+    background-color: #f3f4f7;
+    height: 50px;
+}
+
+#main {
+    margin-top: 50px;
+}
+
+.container {
+
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 10px;
+
+    #signup_form {
+        margin: 50px;
+        padding-top: 50px;
+        padding-bottom: 50px;   
+
+        .form_container {
+            width: 50%;
+            margin: 0 auto;
+            padding: 50px;
+            border: 1px solid #dddddd;
+
+            input {
+                outline: 0;
+            }
+
+            .form-row {
+
+                padding-bottom: 15px;
+
+                .form-column-label {
+                    width: 30%;
+                    height: 100%;
+                    float: left;
+                    position: relative;
+
+                    .inner {
+                        position: absolute;
+                        top: 50%;
+                        -webkit-transform: translateY(-50%);
+                        transform: translateY(-50%);
+                    }
+                }
+
+                .form-column-value {
+                    width: 70%;
+                    height: 100%;
+                    float: left;
+                    input {
+                        height: 100%;
+                        width: 100%;
+                        padding: 0 5px;
+                    }
+                }
+
+                &::after {
+                    content: '';
+                    display: block;
+                    clear: both;
+                }
+
+                height: 40px;
+            }
+            
+        }
+
+        .form_footer {
+            text-align: center;
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+            input#signup_button {
+                @include action_button;
+            }
+        }
+    }
+}

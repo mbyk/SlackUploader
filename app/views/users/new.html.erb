@@ -1,0 +1,51 @@
+<div>
+    <%= form_for(@user, url: signup_path, html: { id: 'signup_form' }) do |f| %>
+    <%= render 'shared/errors', object: f.object %>
+    <div class="form_container">
+           <div class="form-row">
+                <div class="form-column-label">
+                    <div class="inner">
+                        <%= f.label '名前' %>
+                    </div>
+                </div>
+                <div class="form-column-value">
+                    <%= f.text_field :name %>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column-label">
+                    <div class="inner">
+                        <%= f.label 'メールアドレス' %>
+                    </div>
+                </div>
+                <div class="form-column-value">
+                    <%= f.text_field :email %>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column-label">
+                    <div class="inner">
+                        <%= f.label 'パスワード' %>
+                    </div>
+                </div>
+                <div class="form-column-value">
+                    <%= f.password_field :password %>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-column-label">
+                    <div class="inner">
+                        <%= f.label 'パスワード確認' %>
+                    </div>
+                </div>
+                <div class="form-column-value">
+                    <%= f.password_field :password_confirmation %>
+                </div>
+            </div>
+
+        </div>
+        <div class="form_footer">
+            <%= f.submit '登録', id: 'signup_button' %>
+        </div>
+    <% end %>
+</div>

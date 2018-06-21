@@ -9,6 +9,25 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header id="header">
+      <div class="container">
+        <div class="title">
+          <%= link_to('SlackUploader', root_path) %>
+        </div>
+      </div>
+    </header>
+    <div id="main">
+      <div class="container">
+        <% flash.each do |k, v| %>
+          <div class='<%= "alert-#{k}" %>'><%= "#{v}" %></div>
+        <% end %>
+        <%= yield %>
+      </div>
+    </div>
+    <footer id="footer">
+      <div class="container">
+        @SlackUploader
+      </div>
+    </footer>
   </body>
 </html>
