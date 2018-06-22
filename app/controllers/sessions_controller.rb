@@ -54,7 +54,7 @@ class SessionsController < ApplicationController
         access_token = data[:access_token.to_s]
         user_id = data[:user_id.to_s]
 
-        update_params = { slack_access_token: access_token, slack_user_id: user_id }
+        update_params = { slack_access_token: User.slack_token_encrypt(access_token), slack_user_id: user_id }
         if current_user.update(update_params) 
           flash[:success] = "Slackを連携しました。"
           redirect_to root_url and return

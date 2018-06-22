@@ -10,7 +10,7 @@ class WelcomeController < ApplicationController
 
   # Request (GET )
   def send_channel_request
-    uri = URI("#{EasySettings.slack.channel_list_url}?token=#{current_user.slack_access_token}")
+    uri = URI("#{EasySettings.slack.channel_list_url}?token=#{User.slack_token_decrypt(current_user.slack_access_token)}")
 
     # Create client
     http = Net::HTTP.new(uri.host, uri.port)
