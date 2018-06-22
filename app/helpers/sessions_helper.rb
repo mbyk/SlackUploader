@@ -8,6 +8,10 @@ module SessionsHelper
         session.delete(:slack_state)
     end
 
+    def is_slack_linked?
+        !!current_user&.slack_access_token
+    end
+
     def current_user
         @current_user ||= User.find_by(id: session[:user_id])
     end

@@ -3,6 +3,35 @@ html, body {
     margin: 0;
 }
 
+#slack_channel_area {
+    margin-bottom: 50px;
+}
+
+.photo_preview_area {
+    display: inline;
+    &::after {
+        display: block;
+        content: '';
+        clear: both;
+        margin-bottom: 50px;
+    }
+
+    #photo_preview {
+        width: 200px;
+        height: 200px;
+        border: 2px dashed #caccd1;
+        margin: 0 auto;
+        margin-bottom: 50px;
+        text-align: center;
+        vertical-align: middle;
+        display: table-cell;
+
+        .photo_preview_text {
+            color: #caccd1;
+        }
+    }
+}
+
 #header {
     background-color: black;
     position: fixed;
@@ -115,6 +144,9 @@ a {
     margin-top: 50px;
     background-color: #f3f4f7;
     height: 50px;
+    // position: fixed;
+    // bottom: 0;
+    // width: 100%;
 }
 
 #main {

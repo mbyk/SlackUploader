@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621035943) do
+ActiveRecord::Schema.define(version: 20180622013004) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20180621035943) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.string "slack_access_token"
+    t.string "slack_user_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -1,0 +1,22 @@
+default: &default
+  slack:
+    client_id: "<%= ENV["SLACK_CLIENT_ID"] %>"
+    client_secret: <%= ENV["SLACK_CLIENT_SECRET"] %>
+    token_encrypt_secret: <%= ENV["SLACK_TOKEN_ENCRYPT_SECRET"] %>
+    oauth_redirect_url: 'http://lvh.me:3000/slack/oauth/callback'
+    oauth_access_url: 'https://slack.com/api/oauth.access'
+    authorize_url: 'https://slack.com/oauth/authorize'
+    channel_list_url: 'https://slack.com/api/channels.list'
+    scope: 'files:write:user,channels:read'
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+
+
+
