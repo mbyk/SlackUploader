@@ -7,7 +7,6 @@ module SlackTokenEncryptor
 	end
 
 	module ClassMethods
-	
 		def encrypt(token)
 			encryptor.encrypt_and_sign(token)	
 		end
