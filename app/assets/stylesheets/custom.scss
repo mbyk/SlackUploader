@@ -32,6 +32,15 @@ html, body {
     }
 }
 
+#slack_channel_id {
+    text-decoration: none;
+    height: 60px;
+    width: 200px;
+    outline: none;
+    font-size: 1.3em;
+    border: 1px solid #caccd1;
+}
+
 #header {
     background-color: black;
     position: fixed;
