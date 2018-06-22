@@ -1,6 +1,12 @@
 html, body {
     padding: 0;
     margin: 0;
+    background-color: #493c4b;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
 }
 
 #slack_channel_area {
@@ -42,7 +48,7 @@ html, body {
 }
 
 #header {
-    background-color: black;
+    background-color: #251e26;
     position: fixed;
     top: 0;
     left: 0;
@@ -97,6 +103,7 @@ a {
     font-size: 1.3em;
     background-color: #e01563;
     border-radius: 5px;
+    border-width: 0;
     cursor: pointer;
     outline: 0;
     &:hover {
@@ -153,6 +160,9 @@ a {
     margin-top: 50px;
     background-color: #f3f4f7;
     height: 50px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
     // position: fixed;
     // bottom: 0;
     // width: 100%;
@@ -167,6 +177,10 @@ a {
     width: 80%;
     margin: 0 auto;
     padding-top: 10px;
+
+    h1 {
+        color: white;
+    }
 
     #signup_form {
         margin: 50px;
@@ -192,6 +206,7 @@ a {
                     height: 100%;
                     float: left;
                     position: relative;
+                    color: white;
 
                     .inner {
                         position: absolute;
