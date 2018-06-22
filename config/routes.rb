@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 	get 'slack_oauth', to: 'sessions#slack_oauth'
   get 'slack/oauth/callback', to: 'sessions#slack_oauth_callback'
+	post '/slack/upload', to: 'uploads#create'
 
   get 'welcome/home'
 

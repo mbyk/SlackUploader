@@ -6,19 +6,25 @@
     <%= link_to 'サインアップ', signup_path, class: 'signup_link' %>
     <% else %>
         <% if is_slack_linked? %>
-            <div class="photo_preview_area">
-                <div id="photo_preview">
-                    <div class="photo_preview_text">Drag&Drop</div>
+            <%= form_for(:upload, url: slack_upload_path, html: { id: 'upload_form' }) do |f| %>          
+                <div class="photo_preview_area">
+                    <div id="photo_preview">
+                        <div class="photo_preview_text">Drag&Drop</div>
+                        <div>
+                            <label for="photo_select">
+                                または、ファイルを選択
+                                <%= f.file_field :photo, id: 'photo_select', accept: 'image/png,image/jpeg' %>
+                            </label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div id="slack_channel_area">
-                <% if @slack_channel_list&.any? %>
-                    <%= form_for(:welcome, url: '/create') do |f| %>          
-                        <%= select_tag :slack_channel_id, options_from_collection_for_select(@slack_channel_list, 'id', 'name') %>
+                <div id="slack_channel_area">
+                    <% if @slack_channel_list&.any? %>
+                        <%= f.select :slack_channel_id, options_from_collection_for_select(@slack_channel_list, 'id', 'name') %>
                     <% end %>
-                <% end %>
-            </div>
-            <%= link_to 'Upload', slack_oauth_path, class: 'signup_link' %>
+                </div>
+                <%= f.submit 'Upload', class: 'upload_button' %>
+            <% end %>
         <% else %>
             <%= link_to 'Slack連携', slack_oauth_path, class: 'signup_link' %>
         <% end %>

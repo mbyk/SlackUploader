@@ -1,12 +1,24 @@
+
+@mixin action_button {
+    width: 100px;
+    height: 50px;
+    color: white;
+    font-size: 1.3em;
+    background-color: #e01563;
+    border-radius: 5px;
+    border-width: 0;
+    cursor: pointer;
+    outline: 0;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+
 html, body {
     padding: 0;
     margin: 0;
     background-color: #493c4b;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
 }
 
 #slack_channel_area {
@@ -23,22 +35,45 @@ html {
     }
 
     #photo_preview {
-        width: 200px;
-        height: 200px;
+        width: 300px;
+        height: 300px;
         border: 2px dashed #caccd1;
         margin: 0 auto;
-        margin-bottom: 50px;
         text-align: center;
         vertical-align: middle;
         display: table-cell;
 
         .photo_preview_text {
             color: #caccd1;
+            margin-bottom: 50px;
         }
-    }
+
+        label {
+            color: white;
+            padding: 20px;
+            margin-top: 5px;
+            background: #3eb991;
+            border-radius: 5px;
+            &:hover {
+                opacity: 0.8;
+            }
+
+            #photo_select {
+                display: none;
+            }
+        }
+   }
 }
 
-#slack_channel_id {
+.upload_button {
+    @include action_button;
+}
+
+#upload_form {
+    margin-bottom: 100px;
+}
+
+#upload_slack_channel_id {
     text-decoration: none;
     height: 60px;
     width: 200px;
@@ -96,22 +131,6 @@ a {
     color: white;
 }
 
-@mixin action_button {
-    width: 100px;
-    height: 50px;
-    color: white;
-    font-size: 1.3em;
-    background-color: #e01563;
-    border-radius: 5px;
-    border-width: 0;
-    cursor: pointer;
-    outline: 0;
-    &:hover {
-        opacity: 0.8;
-    }
-}
-
-
 
 .alert-success {
     background-color: #3eb991;
@@ -160,16 +179,14 @@ a {
     margin-top: 50px;
     background-color: #f3f4f7;
     height: 50px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    // position: fixed;
-    // bottom: 0;
-    // width: 100%;
 }
 
 #main {
     margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .container {
