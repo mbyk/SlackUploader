@@ -19,4 +19,9 @@ $(function(){
     reader.readAsDataURL(file);
  
   });
+
+  $('#photo_preview_img_close').click(function() {
+    $(".photo_preview_img").hide();
+    $('#photo_select').val('');
+  });
 });
