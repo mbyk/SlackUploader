@@ -13,11 +13,16 @@
                         <div>
                             <label for="photo_select">
                                 または、ファイルを選択
-                                <%= f.file_field :photo, id: 'photo_select', accept: 'image/png,image/jpeg' %>
+                                <%= f.file_field :photo, id: 'photo_select', accept: 'image/png,image/jpegpara' %>
                             </label>
                         </div>
+                        <div class="photo_preview_img">
+                            <div class="photo_preview_img_container">
+                                <img src="" alt="" id="photo_preview_img_data">
+                            </div>
+                        </div>
                     </div>
-                </div>
+               </div>
                 <div id="slack_channel_area">
                     <% if @slack_channel_list&.any? %>
                         <%= f.select :slack_channel_id, options_from_collection_for_select(@slack_channel_list, 'id', 'name') %>
