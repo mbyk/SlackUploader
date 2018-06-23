@@ -20,6 +20,10 @@ gem 'dotenv-rails'
 gem 'multipart-post'
 gem 'jquery-rails'
 
+group :development do
+  gem 'better_errors'
+end
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '~> 2.13'

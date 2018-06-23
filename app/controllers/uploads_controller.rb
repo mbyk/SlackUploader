@@ -6,10 +6,10 @@ class UploadsController < ApplicationController
     photo = params[:upload][:photo]
     slack_channel_id = params[:upload][:slack_channel_id]
 
-    if photo.nil?
+   if photo.nil?
       flash[:error] = "画像を指定してください"
       redirect_to root_url and return
-    end
+    end 
 
     content_type = photo.content_type
     original_filename = photo.original_filename
