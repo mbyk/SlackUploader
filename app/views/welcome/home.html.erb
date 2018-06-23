@@ -24,6 +24,7 @@
                         </div>
                     </div>
                </div>
+                <%= f.hidden_field :drop_photo, value: '', id: 'hidden_drop_photo' %>
                 <div id="slack_channel_area">
                     <% if @slack_channel_list&.any? %>
                         <%= f.select :slack_channel_id, options_from_collection_for_select(@slack_channel_list, 'id', 'name') %>
