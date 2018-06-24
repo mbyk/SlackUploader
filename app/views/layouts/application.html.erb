@@ -28,7 +28,7 @@
     <div id="main">
       <div class="container">
         <% flash.each do |k, v| %>
-          <div class='<%= "alert-#{k}" %>'><%= "#{v}" %></div>
+          <div class='<%= "alert-#{k}" %>'><%= "#{v}".html_safe %></div>
         <% end %>
         <%= yield %>
       </div>

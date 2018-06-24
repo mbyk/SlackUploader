@@ -18,8 +18,9 @@ class UploadsController < ApplicationController
     original_filename = @upload_photo.original_filename
     tempfile = @upload_photo.tempfile
 
-    if send_request(tempfile, original_filename, content_type, slack_channel_id)
-      flash[:success] = "画像をアップロードしました。"
+    result = send_request(tempfile, original_filename, content_type, slack_channel_id)
+    if result[:result]
+      flash[:success] = "画像をアップロードしました。<div><a href='#{result[:permalink]}'>#{result[:permalink]}</a></div>"
       redirect_to root_url
     else
       flash[:error] = "画像をアップロードできませんでした。"
@@ -74,11 +75,17 @@ class UploadsController < ApplicationController
       puts "Response HTTP Status Code: #{res.code}"
       puts "Response HTTP Response Body: #{res.body}"
       json = JSON.parse(res.body)
-      return json['ok'] == true
+      return {
+        result: true,
+        permalink: json['file']['permalink']
+      }
 
      rescue StandardError => e
        puts "HTTP Request failed (#{e.message})"
-       return false
+       return {
+         result: false
+       }
+
      end
 
 end
