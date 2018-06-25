@@ -19,6 +19,8 @@ gem 'easy_settings'
 gem 'dotenv-rails'
 gem 'multipart-post'
 gem 'jquery-rails'
+gem 'sidekiq'
+gem 'redis-namespace'
 
 group :development do
   gem 'better_errors'

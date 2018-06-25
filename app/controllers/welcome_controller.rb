@@ -4,6 +4,8 @@ class WelcomeController < ApplicationController
     if logged_in? && is_slack_linked?
       @slack_channel_list = send_channel_request
     end
+
+    UploadWorker.perform_async('*upload file..!!!*')
   end
 
   private
