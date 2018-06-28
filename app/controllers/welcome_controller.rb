@@ -3,7 +3,10 @@ class WelcomeController < ApplicationController
   def home
     if logged_in? && is_slack_linked?
       @slack_channel_list = send_channel_request
+      @status_check_job_id = session[:status_check_job_id]
+      session[:status_check_job_id] = nil
     end
+
   end
 
   private

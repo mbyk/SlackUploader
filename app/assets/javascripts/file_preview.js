@@ -67,5 +67,44 @@ $(function(){
     })(file);
     reader.readAsDataURL(file);
   });
+
+  $(document)
+  .ajaxStart(function() {
+    $('#loading_container').show();
+  })
+  .ajaxStop(function() {
+  });
+
+  // アップロードのジョブステータスをポーリング
+  function check_job_status(job_id) {
+    if (job_id && job_id !== '') {
+      $.ajax({ 
+        url: 'jobs/status',
+        type: 'GET', 
+        data: { 
+          job_id: job_id
+        },
+        dataType: 'json',
+        success: function(data) {
+          if (data['result'] == 'success') {
+              $('#loading_container').hide();
+          } else if (data['result'] == 'error') {
+              $('#loading_container').hide();
+          } else if (data['result'] == 'progress') {
+              setTimeout(function() {
+                check_job_status(job_id);
+              }, 1000);
+          } else {
+              $('#loading_container').hide();
+          }
+        }
+
+      })
+    }
+
+  }
+
+  var job_id = window.job_id;
+  check_job_status(job_id);
   
 });

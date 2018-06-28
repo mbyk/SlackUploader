@@ -18,7 +18,8 @@ class UploadsController < ApplicationController
     original_filename = @upload_photo.original_filename
     tempfile = @upload_photo.tempfile
 
-    job_id = UploadWorker.perform_async({temp_path: tempfile.path, filename: original_filename, content_type: content_type, channel_id: slack_channel_id, current_user_id: current_user.id})
+    status_check_job_id = UploadWorker.perform_async({temp_path: tempfile.path, filename: original_filename, content_type: content_type, channel_id: slack_channel_id, current_user_id: current_user.id})
+    session[:status_check_job_id] = status_check_job_id
     redirect_to root_url
 
     # if result[:result]
