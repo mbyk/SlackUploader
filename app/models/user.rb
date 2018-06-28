@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+	has_many :upload_jobs
+
 	include SlackTokenEncryptor
 
 	validates :name, presence: true

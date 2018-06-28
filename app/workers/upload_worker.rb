@@ -4,11 +4,14 @@ class UploadWorker
   include Sidekiq::Worker
 
   def perform(data)
+    current_user = User.find(data[:current_user_id.to_s])
+    job = current_user.upload_jobs.create(job_id: self.jid)
+
     res = send_request(data[:temp_path.to_s], data[:filename.to_s], data[:content_type.to_s], data[:channel_id.to_s], data[:current_user_id.to_s])
     if res[:result]
-
+      job.update_attribute("status", 2)
     else
-
+      job.update_attribute("status", 1)
     end
   end
 

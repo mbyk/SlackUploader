@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622013004) do
+ActiveRecord::Schema.define(version: 20180628064741) do
+
+  create_table "upload_jobs", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "job_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_upload_jobs_on_job_id"
+    t.index ["user_id", "job_id"], name: "index_upload_jobs_on_user_id_and_job_id"
+    t.index ["user_id"], name: "index_upload_jobs_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
