@@ -18,14 +18,16 @@ class UploadsController < ApplicationController
     original_filename = @upload_photo.original_filename
     tempfile = @upload_photo.tempfile
 
-    result = send_request(tempfile, original_filename, content_type, slack_channel_id)
-    if result[:result]
-      flash[:success] = "画像をアップロードしました。<div><a href='#{result[:permalink]}'>#{result[:permalink]}</a></div>"
-      redirect_to root_url
-    else
-      flash[:error] = "画像をアップロードできませんでした。"
-      redirect_to root_url
-    end
+    job_id = UploadWorker.perform_async({temp_path: tempfile.path, filename: original_filename, content_type: content_type, channel_id: slack_channel_id, current_user_id: current_user.id})
+    redirect_to root_url
+
+    # if result[:result]
+    #   flash[:success] = "画像をアップロードしました。<div><a href='#{result[:permalink]}'>#{result[:permalink]}</a></div>"
+    #   redirect_to root_url
+    # else
+    #   flash[:error] = "画像をアップロードできませんでした。"
+    #   redirect_to root_url
+    # end
 
   end
 
@@ -47,45 +49,5 @@ class UploadsController < ApplicationController
 
       @upload_photo
     end
-
-    # Request (POST )
-    def send_request(file, filename, content_type, channel_id)
-      puts "requeset url: #{EasySettings.slack.file_upload_url}"
-      uri = URI(EasySettings.slack.file_upload_url)
-
-      # Create client
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-
-      body = {
-        "token" => User.slack_token_decrypt(current_user.slack_access_token),
-        "channels" => channel_id,
-        "file" => UploadIO.new(file, content_type, filename)
-      }
-    
-      # Create Request
-      req =  Net::HTTP::Post::Multipart.new(uri, body)
-
-      # Add headers
-      req.add_field "Content-Type", "multipart/form-data; charset=utf-8; boundary=__X_PAW_BOUNDARY__"
-    
-      # Fetch Request
-      res = http.request(req)
-      puts "Response HTTP Status Code: #{res.code}"
-      puts "Response HTTP Response Body: #{res.body}"
-      json = JSON.parse(res.body)
-      return {
-        result: true,
-        permalink: json['file']['permalink']
-      }
-
-     rescue StandardError => e
-       puts "HTTP Request failed (#{e.message})"
-       return {
-         result: false
-       }
-
-     end
 
 end
