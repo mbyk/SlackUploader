@@ -23,6 +23,57 @@ html, body {
     background-color: #493c4b;
 }
 
+#loading_container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    display: none;
+
+    &::before {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 150px;
+        height: 150px;
+        top: calc((100% - 150px)/2);
+        left: calc((100% - 150px)/2);
+        background-color: white;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    &::after {
+        position: absolute;
+        content: "";
+        display: block;
+        width: 50px;
+        height: 50px;
+        top: calc((100% - 50px)/2);
+        left: calc((100% - 50px)/2);
+        border-radius: 50px;
+        border: 4px solid #3eb991;
+        border-right: 4px solid transparent;
+        box-sizing: border-box;
+        animation: rotate 1s infinite linear;
+    }
+
+    @keyframes rotate {
+       0% {
+           transform: rotate(0deg);
+       } 
+
+       100% {
+           transform: rotate(360deg);
+       }
+    }
+
+
+}
+
+
 #slack_channel_area {
     margin-bottom: 50px;
 }
