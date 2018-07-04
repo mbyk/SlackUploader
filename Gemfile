@@ -21,6 +21,7 @@ gem 'multipart-post'
 gem 'jquery-rails'
 gem 'sidekiq'
 gem 'redis-namespace'
+gem 'webpacker', github: 'rails/webpacker'
 
 group :development do
   gem 'better_errors'
