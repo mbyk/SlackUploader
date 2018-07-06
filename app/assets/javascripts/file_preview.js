@@ -70,7 +70,7 @@ $(function(){
 
   $(document)
   .ajaxStart(function() {
-    $('#loading_container').show();
+		window.topApp.requesting = true;
   })
   .ajaxStop(function() {
   });
@@ -87,15 +87,15 @@ $(function(){
         dataType: 'json',
         success: function(data) {
           if (data['result'] == 'success') {
-              $('#loading_container').hide();
+						 window.topApp.requesting = false;
           } else if (data['result'] == 'error') {
-              $('#loading_container').hide();
+						 window.topApp.requesting = false;
           } else if (data['result'] == 'progress') {
               setTimeout(function() {
                 check_job_status(job_id);
               }, 1000);
           } else {
-              $('#loading_container').hide();
+						window.topApp.requesting = false;
           }
         }
 
@@ -106,5 +106,4 @@ $(function(){
 
   var job_id = window.job_id;
   check_job_status(job_id);
-  
 });

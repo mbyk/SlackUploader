@@ -6,10 +6,18 @@ import Footer from '../components/footer.vue';
 // フッター用のコンポーネントinclude
 import Header from '../components/header.vue.erb';
 
-new Vue({
+import Loading from '../components/loading.vue';
+
+window.topApp = new Vue({
   el: '#app',
+  data() {
+    return {
+      requesting: false
+    }
+  },
   components: { 
     'app-footer': Footer,
-    'app-header': Header
+    'app-header': Header,
+    Loading
   }
 });
